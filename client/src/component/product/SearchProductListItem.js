@@ -1,7 +1,12 @@
 import axios from "axios";
 import { Button } from "reactstrap";
 
-function SearchProductListItem({ item, index, getSearchSaveProductList }) {
+function SearchProductListItem({
+  userId,
+  item,
+  index,
+  getSearchSaveProductList,
+}) {
   return (
     <tr className="itemList__item">
       <td>{index}</td>
@@ -21,7 +26,7 @@ function SearchProductListItem({ item, index, getSearchSaveProductList }) {
         <Button onClick={deleteSaveItem}>삭제</Button>
       </td>
       <td>
-        <Button>담기</Button>
+        <Button onClick={cartSave}>담기</Button>
       </td>
     </tr>
   );
@@ -38,6 +43,36 @@ function SearchProductListItem({ item, index, getSearchSaveProductList }) {
         }
       })
       .catch(() => {});
+  }
+  //api -  cart에 넣기
+  function cartSave() {
+    // cart id가져오기
+    axios
+      .post("/api/cart?type=cart_id", { user_id: userId })
+      .then((res) => {
+        try {
+          const data = res.data.json;
+          if (data) {
+            const cartId = data[0].cart_id;
+            // api - 장바구니에 넣기
+            axios
+              .post("/api/cart?type=save", {
+                cart_id: cartId,
+                product_id: item.product_id,
+                user_id: userId,
+              })
+              .then(() => {
+                alert("장바구니 담기 성공");
+              })
+              .catch(() => {
+                alert("장바구니 담기 중 오류가 발생하였습니다");
+              });
+          }
+        } catch {}
+      })
+      .catch((err) => {
+        alert("Cart Id 조회 중 오류가 발생하였습니다.");
+      });
   }
 }
 

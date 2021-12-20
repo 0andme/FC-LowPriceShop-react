@@ -32,6 +32,7 @@ function SearchProductList({ searchClick, selectCategorys, userId }) {
             {searchSaveProductList.map((item, index) => {
               return (
                 <SearchProductListItem
+                  userId={userId}
                   index={index + 1}
                   item={item}
                   key={item.product_id}
