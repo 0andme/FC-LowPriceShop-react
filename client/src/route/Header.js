@@ -29,7 +29,7 @@ class Header extends Component {
               <NavLink to={"/naverApi"}>상품 등록</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to={"/product"}>구매 하기</NavLink>
+              <NavLink to={"/product"}>상품 목록</NavLink>
             </NavItem>
             <NavItem>
               <NavLink to={"/cart"}>장바구니</NavLink>
