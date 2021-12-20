@@ -1,6 +1,6 @@
 import React from "react";
 
-function CardListItem({ item, index }) {
+function CartListItem({ item, index }) {
   return (
     <tr>
       <td>{index}</td>
@@ -21,4 +21,4 @@ function CardListItem({ item, index }) {
   );
 }
 
-export default CardListItem;
+export default CartListItem;
