@@ -32,6 +32,7 @@ function SaveProductList({ getSaveProductTotal, displayCnt, pageNum, userId }) {
             {saveProductList.map((item, index) => {
               return (
                 <SaveProductListItem
+                  userId={userId}
                   index={index + 1}
                   getSaveProductTotal={getSaveProductTotal}
                   getsaveProductList={getsaveProductList}
