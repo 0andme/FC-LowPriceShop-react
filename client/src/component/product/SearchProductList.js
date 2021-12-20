@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import axios from "axios";
-import SaveProductListItem from "./SaveProductListItem";
 import SearchProductListItem from "./SearchProductListItem";
 function SearchProductList({ searchClick, selectCategorys, userId }) {
   // state
