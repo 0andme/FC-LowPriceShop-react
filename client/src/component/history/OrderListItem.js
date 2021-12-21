@@ -22,6 +22,7 @@ function OrderListItem({ item, index, userId }) {
   return (
     <>
       <tr
+        className="orderItem"
         onClick={() => {
           setIsItemOpen(!isItemOpen);
         }}
