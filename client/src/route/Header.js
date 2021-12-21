@@ -23,19 +23,19 @@ class Header extends Component {
               <NavLink to={"/board"}>게시판</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to={"/register"}>사용자 등록</NavLink>
+              <NavLink to={"/register"}>회원가입</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to={"/naverApi"}>상품 등록</NavLink>
+              <NavLink to={"/naverApi"}>상품등록</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to={"/product"}>상품 목록</NavLink>
+              <NavLink to={"/product"}>상품목록</NavLink>
             </NavItem>
             <NavItem>
               <NavLink to={"/cart"}>장바구니</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to={"/history"}>구매 내역</NavLink>
+              <NavLink to={"/history"}>주문 내역</NavLink>
             </NavItem>
           </Nav>
         </Navbar>
