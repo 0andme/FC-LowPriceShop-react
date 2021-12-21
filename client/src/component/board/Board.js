@@ -32,10 +32,6 @@ function Board() {
       <div style={{ display: "flex ", justifyContent: "flex-start" }}>{`${
         pageNum + 1
       }/${pageNavNum}`}</div>
-      {/*  BoardList*/}
-      <BoardList displayCnt={displayCnt} pageNum={pageNum} />
-      {/* pageNav */}
-      <PageNav setPageNum={setPageNum} pageNavNum={pageNavNum} />
       {/* controller -글쓰기 새로고침 */}
       <div className="boardController">
         <Button
@@ -48,6 +44,14 @@ function Board() {
         <Button onClick={getBoardTotalCount}>새로고침</Button>
       </div>
       {isInputOpen && <BoardAdd></BoardAdd>}
+      {/*  BoardList*/}
+      <BoardList displayCnt={displayCnt} pageNum={pageNum} />
+      {/* pageNav */}
+      <PageNav
+        pageNum={pageNum}
+        setPageNum={setPageNum}
+        pageNavNum={pageNavNum}
+      />
     </Container>
   );
 

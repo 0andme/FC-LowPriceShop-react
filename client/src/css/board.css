@@ -13,7 +13,8 @@
   justify-content: center;
 }
 .boardController {
-  margin-top: -58px;
+  margin: 10px 0;
+  float: right;
 }
 .boardController button {
   margin-right: 10px;
