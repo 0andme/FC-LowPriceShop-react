@@ -2,9 +2,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Button, Container } from "reactstrap";
 import axios from "axios";
 import SaveProductList from "./SaveProductList";
-import PageNav from "../board/PageNav";
 import SearchSaveProduct from "./SearchSaveProduct";
 import SearchProductList from "./SearchProductList";
+import PageNav from "../search/PageNav";
 
 function Product({ userId }) {
   // state
