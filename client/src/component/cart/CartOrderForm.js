@@ -4,7 +4,7 @@ import CartCardFrom from "./CartCardFrom";
 import CartDeliveryForm from "./CartDeliveryForm";
 import axios from "axios";
 
-function CartOrderForm({ cartId, userId, totalPrice }) {
+function CartOrderForm({ cartId, userId, totalPrice, setIsOrderd }) {
   const [deliveryData, setDeliveryData] = useState({
     receive_user: "",
     receive_user_tel1: "",
@@ -30,8 +30,10 @@ function CartOrderForm({ cartId, userId, totalPrice }) {
 
   useEffect(() => {
     if (isVaildCardForm && isVaildDeliForm) {
-      // 구매시작
-      orderItem();
+      // 구매 시작
+      if (window.confirm("상품을 구매하시겠습니까?")) {
+        orderItem();
+      }
     }
   }, [isVaildCardForm, isVaildDeliForm]);
   return (
@@ -90,6 +92,7 @@ function CartOrderForm({ cartId, userId, totalPrice }) {
           })
           .then(() => {
             alert("구매성공");
+            setIsOrderd(true);
           })
           .catch();
       })

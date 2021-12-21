@@ -8,13 +8,16 @@ function Cart({ userId }) {
   const [cartId, setCartId] = useState("");
   const [cartList, setCartList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isOrdered, setIsOrderd] = useState(false);
 
   useEffect(() => {
     getCartList();
-  }, []);
+  }, [isOrdered]);
   useEffect(() => {
     if (cartList.length > 0) {
       getTotalPrice();
+    } else {
+      setTotalPrice(0);
     }
   }, [cartList]);
 
@@ -33,12 +36,14 @@ function Cart({ userId }) {
       ></CartList>
 
       {/*  배송지 입력*/}
-      <CartOrderForm
-        totalPrice={totalPrice}
-        cartId={cartId}
-        userId={userId}
-      ></CartOrderForm>
-      {/* 결제 */}
+      {cartList.length > 0 && !isOrdered && (
+        <CartOrderForm
+          setIsOrderd={setIsOrderd}
+          totalPrice={totalPrice}
+          cartId={cartId}
+          userId={userId}
+        />
+      )}
     </Container>
   );
   // api- CartId 조회
@@ -66,7 +71,6 @@ function Cart({ userId }) {
         try {
           const list = res.data.json;
           if (list) {
-            // console.log(list);
             setCartList(list);
           }
         } catch {}
