@@ -20,3 +20,6 @@ tr.itemList__item a {
 .menu.nav li a:hover {
   color: red;
 }
+ul {
+  margin: 0;
+}
