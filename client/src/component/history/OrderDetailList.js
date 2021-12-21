@@ -15,22 +15,22 @@ function OrderDetailList({ userId, orderId }) {
           <tr>
             <th>번호</th>
             <th>상품</th>
-            <th>상품명</th>
+            <th className="w-50">상품명</th>
             <th>수량</th>
             <th>총 가격</th>
           </tr>
-          <tbody>
-            {orderDetailList.map((item, index) => {
-              return (
-                <OrderDetailListItem
-                  item={item}
-                  index={index + 1}
-                  key={item.product_id}
-                />
-              );
-            })}
-          </tbody>
         </thead>
+        <tbody>
+          {orderDetailList.map((item, index) => {
+            return (
+              <OrderDetailListItem
+                item={item}
+                index={index + 1}
+                key={item.product_id}
+              />
+            );
+          })}
+        </tbody>
       </Table>
     </div>
   );
