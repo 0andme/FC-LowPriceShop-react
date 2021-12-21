@@ -34,14 +34,22 @@ function OrderListItem({ item, index, userId }) {
         <td>{item.insert_date}</td>
       </tr>
       {isItemOpen && (
-        <tr>
+        <tr
+          className="orderDetailItem"
+          onClick={() => {
+            setIsItemOpen(false);
+          }}
+        >
           <td colSpan="5">
             <Card>
+              <CardHeader>주문서</CardHeader>
               <CardBody>
                 {/* 주문 정보 */}
-                <OrderInfo orderInfoData={orderInfoData} />
-                {/* 주문 아이템 리스트 */}
-                <OrderDetailList userId={userId} orderId={item.order_id} />
+                <OrderInfo
+                  userId={userId}
+                  orderId={item.order_id}
+                  orderInfoData={orderInfoData}
+                />
               </CardBody>
             </Card>
           </td>
