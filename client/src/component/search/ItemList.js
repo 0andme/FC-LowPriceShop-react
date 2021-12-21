@@ -1,49 +1,33 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import ItemListItem from "./ItemListItem";
-import { Table } from "reactstrap";
+import { Pagination, PaginationItem, PaginationLink, Table } from "reactstrap";
+import PageNav from "./PageNav";
 
 function ItemList({ selectedData }) {
   // state
+  const displayCnt = 10;
+  const pageNavNum = 10;
   // 네이버 상품 검색 결과 리스트
   const [itemList, setItemList] = useState([]);
   // 네이버 상품 검색 api에 사용되는 페이지 번호
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(0);
   // 네이버 상품 검색 api body값 지정
+
   const searchOptions = useMemo(() => {
+    console.log("pageNum", pageNum);
     return {
       query: selectedData,
-      display: 10,
-      start: pageNum,
+      display: displayCnt,
+      start: pageNum * displayCnt,
       sort: "asc",
     };
   }, [selectedData, pageNum]);
-  // pagination 렌더
-  // const pagelist = () => {
-  //   const res = [];
-  //   for (let index = 0; index < 10; index++) {
-  //     res.push(
-  //       <PaginationItem key={index}>
-  //         <PaginationLink
-  //           id={searchOptions.display * index + 1}
-  //           onClick={() => {
-  //             setPageNum(index + 1);
-  //           }}
-  //         >
-  //           {index + 1}
-  //         </PaginationLink>
-  //       </PaginationItem>
-  //     );
-  //   }
-  //   return res;
-  // };
 
   // 상품 검색 api 호출
   useEffect(() => {
     axios
-      .post("/api/naverApi?type=shopList", {
-        query: selectedData,
-      })
+      .post("/api/naverApi?type=shopList", searchOptions)
       .then((res) => {
         setItemList(res.data.items);
       })
@@ -72,9 +56,7 @@ function ItemList({ selectedData }) {
           </tbody>
         )}
       </Table>
-      {/* <div className="itemList__pagination">
-        <Pagination>{pagelist()}</Pagination>
-      </div> */}
+      <PageNav pageNavNum={pageNavNum} setPageNum={setPageNum}></PageNav>
     </>
   );
 }
