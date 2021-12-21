@@ -9,7 +9,7 @@ function OrderDetailList({ userId, orderId }) {
     getOrderDetailList();
   }, []);
   return (
-    <div>
+    <div style={{ border: "1px solid rgba(0,0,0,0.03)" }}>
       <Table>
         <thead>
           <tr>
