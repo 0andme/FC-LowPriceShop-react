@@ -1,13 +1,13 @@
 import React from "react";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 
-function PageNav({ pageNavNum, setPageNum }) {
+function PageNav({ pageNum, pageNavNum, setPageNum }) {
   // pageNavNum개의 PaginationItem 렌더를 위한 변수
   const pageNavList = () => {
     const navList = [];
     for (let index = 0; index < pageNavNum; index++) {
       navList.push(
-        <PaginationItem key={index}>
+        <PaginationItem active={index === pageNum} key={index}>
           <PaginationLink
             onClick={() => {
               setPageNum(index);

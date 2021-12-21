@@ -56,7 +56,11 @@ function ItemList({ selectedData }) {
           </tbody>
         )}
       </Table>
-      <PageNav pageNavNum={pageNavNum} setPageNum={setPageNum}></PageNav>
+      <PageNav
+        pageNum={pageNum}
+        pageNavNum={pageNavNum}
+        setPageNum={setPageNum}
+      ></PageNav>
     </>
   );
 }

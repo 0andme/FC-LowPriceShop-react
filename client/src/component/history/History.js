@@ -26,7 +26,11 @@ function History({ userId }) {
             displayCnt={displayCnt}
             userId={userId}
           />
-          <PageNav pageNavNum={pageNavNum} setPageNum={setPageNum}></PageNav>
+          <PageNav
+            pageNum={pageNum}
+            pageNavNum={pageNavNum}
+            setPageNum={setPageNum}
+          ></PageNav>
         </CardBody>
       </Card>
     </Container>

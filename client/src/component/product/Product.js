@@ -82,7 +82,11 @@ function Product({ userId }) {
             pageNum={pageNum}
           />
           {/* 페이지 네비게이션 */}
-          <PageNav pageNavNum={pageNavNum} setPageNum={setPageNum}></PageNav>
+          <PageNav
+            pageNum={pageNum}
+            pageNavNum={pageNavNum}
+            setPageNum={setPageNum}
+          ></PageNav>
         </>
       )}
     </Container>
