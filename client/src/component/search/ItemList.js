@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import ItemListItem from "./ItemListItem";
-import { Pagination, PaginationItem, PaginationLink, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import PageNav from "./PageNav";
 
 function ItemList({ selectedData }) {
