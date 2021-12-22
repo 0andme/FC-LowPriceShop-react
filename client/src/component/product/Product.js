@@ -69,11 +69,6 @@ function Product({ userId }) {
       {/* 버튼이 페이지별일 때 */}
       {!isPageOrSearch && (
         <>
-          {/* 현재 페이지 번호 출력 */}
-          <div style={{ display: "flex ", justifyContent: "flex-start" }}>{`${
-            pageNum + 1
-          }/${pageNavNum}`}</div>
-
           {/* 등록된 상품 리스트 */}
           <SaveProductList
             userId={userId}
