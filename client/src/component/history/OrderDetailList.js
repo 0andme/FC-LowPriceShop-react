@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, Row, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import OrderDetailListItem from "./OrderDetailListItem";
 
 function OrderDetailList({ userId, orderId }) {

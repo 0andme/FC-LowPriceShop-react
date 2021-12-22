@@ -28,10 +28,7 @@ function Board() {
   return (
     <Container className="mainContent">
       <h2>게시판</h2>
-      {/* 현재 페이지 출력*/}
-      <div style={{ display: "flex ", justifyContent: "flex-start" }}>{`${
-        pageNum + 1
-      }/${pageNavNum}`}</div>
+
       {/* controller -글쓰기 새로고침 */}
       <div className="boardController">
         <Button

@@ -73,11 +73,11 @@ function Cart({ userId }) {
           if (list) {
             setCartList(list);
           }
-        } catch {}
+        } catch {
+          alert(" 장바구니 목록을 가져오는 중 오류가 발생하였습니다.");
+        }
       })
-      .catch(() => {
-        alert(" 장바구니 목록을 가져오는 중 오류가 발생하였습니다.");
-      });
+      .catch(() => {});
   }
   // api - 장바구니 전체 금액 출력하기
   function getTotalPrice() {

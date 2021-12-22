@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardHeader, Col, Row, Table } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import OrderDetailList from "./OrderDetailList";
 
 function OrderInfo({ userId, orderInfoData }) {
