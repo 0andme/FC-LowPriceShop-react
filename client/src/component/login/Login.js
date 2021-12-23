@@ -2,14 +2,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Button, CardBody, CardHeader, Container } from "reactstrap";
 import { AvField, AvForm } from "availity-reactstrap-validation";
 import axios from "axios";
-
+import cookie from "react-cookies";
 function Login({ setUserId }) {
   const [loginData, setLoginData] = useState({
     user_email1: "",
     user_email2: "",
     user_password: "",
   });
-  const [isValidData, setIsValidData] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   const userId = useMemo(() => {
@@ -17,64 +16,62 @@ function Login({ setUserId }) {
   }, [loginData]);
   useEffect(() => {
     if (isValidForm) {
-      // 비밀번호 검사
-      dplicheck();
+      // 로그인 시도
+      funcLogin();
     }
   }, [isSubmit, isValidForm]);
-  useEffect(() => {
-    if (isValidData) {
-      alert("로그인 성공");
-      setUserId(userId);
-    }
-  }, [isValidData]);
+
   const user_email = useMemo(() => {
     return loginData.user_email1 + "@" + loginData.user_email2;
   }, [loginData.user_email1, loginData.user_email2]);
-  function dplicheck() {
+
+  // 로그인 함수
+  function funcLogin() {
     axios
-      .post("api/user?type=dplicheck", {
-        user_email1: loginData.user_email1,
-        user_email2: loginData.user_email2,
-      })
-      .then((res) => {
-        try {
-          const data = res.data.json;
-          if (data) {
-            if (data[0].dupliEmailCount === 0) {
-              alert("가입된 이메일이 없습니다");
-              setIsValidData(false);
-              setIsValidForm(false);
-            } else {
-              passwordCheck();
-            }
-          }
-        } catch {}
-      })
-      .catch();
-  }
-  function passwordCheck() {
-    axios
-      .post("/api/user?type=pwdCheck", {
+      .post("/api/user?type=login", {
         user_email: user_email,
         user_password: loginData.user_password,
       })
       .then((res) => {
         try {
-          const data = res.data;
-          if (data) {
-            if (data.value === "Y") {
-              setIsValidData(true);
-            } else {
-              alert("비밀번호를 다시 확인해주세요");
-              setIsValidData(false);
-              setIsValidForm(false);
-            }
-          }
-        } catch {
-          alert("등록되지 않은 이메일 입니다");
-        }
+          const data = res.data[0];
+          const user_email = data.user_email;
+          const user_name = data.user_name;
+          const user_pwd = data.user_password;
+          alert("로그인 성공");
+          // 로그인 후에 세션 유효기간 60분으로 설정하기
+          const expires = new Date();
+          expires.setMinutes(expires.getMinutes() + 60);
+          // 쿠키에 로그인 데이터 넣기
+          funcJwtToken(expires, user_pwd, user_email, user_name);
+        } catch {}
       })
-      .catch();
+      .catch(() => {});
+  }
+  // 쿠키에 로그인 데이터 넣기
+  function funcJwtToken(expires, user_pwd, user_email, user_name) {
+    axios
+      .post("/api/user?type=webtoken", {
+        user_email: user_email,
+        user_name: user_name,
+      })
+      .then((res) => {
+        cookie.save("token_id", res.data.token_id, {
+          path: "/",
+          expires,
+        });
+        cookie.save("token_name", res.data.token_name, {
+          path: "/",
+          expires,
+        });
+        cookie.save("user_pwd", user_pwd, { path: "/naverApi", expires });
+      })
+      .catch(() => {
+        alert("작업 중 오류가 발생했습니다");
+      });
+    setTimeout(function () {
+      window.location.href = "/naverApi";
+    }, 1000);
   }
   return (
     <Container className="mainContent">
