@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BoardListItem from "./BoardListItem";
 import { Table } from "reactstrap";
-function BoardList({ pageNum, displayCnt }) {
+function BoardList({ boardTotal, pageNum, displayCnt }) {
   // state
   // 화면에 출력될 게시판 목록
   const [boardList, setBoardList] = useState([]);
@@ -10,7 +10,7 @@ function BoardList({ pageNum, displayCnt }) {
   // pageNum변경시 게시판 목록 가져오기
   useEffect(() => {
     getBoardList();
-  }, [pageNum]);
+  }, [boardTotal, pageNum]);
 
   return (
     <div className="boardList">
@@ -27,7 +27,13 @@ function BoardList({ pageNum, displayCnt }) {
         {boardList.length > 0 && (
           <tbody>
             {boardList.map((item) => {
-              return <BoardListItem item={item} key={item.id} />;
+              return (
+                <BoardListItem
+                  getBoardList={getBoardList}
+                  item={item}
+                  key={item.id}
+                />
+              );
             })}
           </tbody>
         )}
