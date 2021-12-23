@@ -1,0 +1,23 @@
+.boardList {
+  margin-bottom: 30px;
+}
+.emptyBoard {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pageNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.boardController {
+  margin: 20px 0;
+}
+.boardController button {
+  margin-right: 10px;
+}
+.controller button:last-child {
+  margin: 0;
+}

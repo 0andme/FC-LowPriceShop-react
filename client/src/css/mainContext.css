@@ -1,0 +1,28 @@
+.mainContent {
+  padding: 30px 0;
+}
+.mainContent h2 {
+  margin-bottom: 30px;
+}
+.itemList__item img {
+  width: 100px;
+}
+tr.itemList__item a {
+  color: #000;
+  text-decoration: none;
+}
+.menu.nav li {
+  margin-right: 10px;
+}
+.menu.nav li :last-child {
+  margin-right: 0;
+}
+.menu.nav li a:hover {
+  color: red;
+}
+ul {
+  margin: 0;
+}
+table.table {
+  margin: 0;
+}

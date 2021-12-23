@@ -1,0 +1,11 @@
+.saveProductNum {
+  float: left;
+  margin-top: -60px;
+  margin-left: 120px;
+}
+.resetBtn {
+  margin: 0 10px;
+}
+.isPageOrSearchBtn {
+  margin-bottom: 30px;
+}
