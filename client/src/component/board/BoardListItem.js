@@ -1,7 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Card } from "reactstrap";
+import { Card, CardHeader, CardText, CardTitle } from "reactstrap";
 
-function BoardListItem({ item }) {
+function BoardListItem({ item, getBoardList }) {
   // state
   // 개별 게시판 목록 아이템의 클릭 여부
   const [isItemOpen, setIsItemOpen] = useState(false);
@@ -9,6 +10,7 @@ function BoardListItem({ item }) {
     <>
       <tr
         onClick={() => {
+          upViewCount();
           setIsItemOpen(!isItemOpen);
         }}
       >
@@ -21,15 +23,29 @@ function BoardListItem({ item }) {
       {isItemOpen && (
         <tr>
           <td colSpan="4">
-            <Card>
-              <h5>{item.title}</h5>
-              <div>{item.content}</div>
+            <Card body>
+              <CardHeader> {item.title ? item.title : "제목없음"}</CardHeader>
+              <span style={{ position: "absolute", margin: "10px 0  0 10px" }}>
+                조회수 {item.view_count}
+              </span>
+              <span style={{ position: "absolute", margin: "10px 0 0 100px" }}>
+                작성자 {item.insert_user}
+              </span>
+              <CardText>{item.content ? item.content : "내용없음"}</CardText>
             </Card>
           </td>
         </tr>
       )}
     </>
   );
+  function upViewCount() {
+    axios
+      .post("/api/Board?type=upCount", { id: item.id })
+      .then(() => {
+        getBoardList();
+      })
+      .catch();
+  }
 }
 
 export default BoardListItem;
