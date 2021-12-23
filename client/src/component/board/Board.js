@@ -40,9 +40,18 @@ function Board() {
         </Button>
         <Button onClick={getBoardTotalCount}>새로고침</Button>
       </div>
-      {isInputOpen && <BoardAdd></BoardAdd>}
+      {isInputOpen && (
+        <BoardAdd
+          getBoardTotalCount={getBoardTotalCount}
+          setIsInputOpen={setIsInputOpen}
+        ></BoardAdd>
+      )}
       {/*  BoardList*/}
-      <BoardList displayCnt={displayCnt} pageNum={pageNum} />
+      <BoardList
+        boardTotal={boardTotal}
+        displayCnt={displayCnt}
+        pageNum={pageNum}
+      />
       {/* pageNav */}
       <PageNav
         pageNum={pageNum}
@@ -63,7 +72,6 @@ function Board() {
             setBoardTotal(cnt[0].total_count);
           }
         } catch (error) {
-          console.log(error);
           alert("게시판 개수를 가져오지 못했습니다");
         }
       })
