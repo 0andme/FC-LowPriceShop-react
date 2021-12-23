@@ -10,7 +10,9 @@ function BoardListItem({ item, getBoardList }) {
     <>
       <tr
         onClick={() => {
-          upViewCount();
+          if (isItemOpen) {
+            upViewCount();
+          }
           setIsItemOpen(!isItemOpen);
         }}
       >
