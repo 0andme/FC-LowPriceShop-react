@@ -44,7 +44,9 @@ function Login({ setUserId }) {
           expires.setMinutes(expires.getMinutes() + 60);
           // 쿠키에 로그인 데이터 넣기
           funcJwtToken(expires, user_pwd, user_email, user_name);
-        } catch {}
+        } catch {
+          alert("이메일과 비밀번호를 확인해주세요");
+        }
       })
       .catch(() => {});
   }
