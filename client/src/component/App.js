@@ -44,7 +44,7 @@ function App() {
             axios
               .post("/api/user?type=sessionSignin", {
                 user_email: res.data.decrypt_id.user_email,
-                user_passward: tpwd,
+                user_password: tpwd,
               })
               .then((res) => {
                 if (!res.data[0].user_email) {
