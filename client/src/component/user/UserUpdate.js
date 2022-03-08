@@ -23,7 +23,7 @@ function UserUpdate({ userData, setIsUpdateMode, getUserData, userId }) {
         <tbody>
           <tr>
             <td>이메일</td>
-            <td>{userData.user_email}</td>
+            <td>{userData.user_email ? userData.user_email : ""}</td>
           </tr>
           <tr>
             <td>이름</td>
